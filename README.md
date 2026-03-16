@@ -78,17 +78,20 @@ test/
 
 GitHub Actions runs on every push to `main`:
 
-1. **Test** — `flutter analyze` + `flutter test`
-2. **Build** — `flutter build web --base-href /improved-parakeet/`
-3. **Deploy** — pushed to GitHub Pages via `actions/deploy-pages`
+1. **Test** — format check, `flutter analyze`, `flutter test`
+2. **Build** — `flutter build web --base-href /improved-parakeet/`, uploads result as a workflow artifact (retained 7 days)
+3. **Deploy** — downloads the artifact and pushes it to the `gh-pages` branch via `peaceiris/actions-gh-pages`
+
+On pull requests only the **Test** job runs; the deploy is skipped.
 
 See [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
 
 ### Enabling GitHub Pages
 
 1. Go to **Settings → Pages** in your repository
-2. Set **Source** to **GitHub Actions**
-3. Push to `main` to trigger the first deployment
+2. Set **Source** to **Deploy from a branch**
+3. Set **Branch** to `gh-pages` / `/ (root)`
+4. Push to `main` to trigger the first deployment
 
 ## Contributing
 
