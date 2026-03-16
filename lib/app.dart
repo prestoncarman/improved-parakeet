@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'pages/about_page.dart';
 import 'pages/bit_conversion_page.dart';
 import 'pages/character_counter_page.dart';
 import 'pages/clock_page.dart';
@@ -41,6 +42,10 @@ final _router = GoRouter(
         GoRoute(
           path: '/clock',
           builder: (context, state) => const ClockPage(),
+        ),
+        GoRoute(
+          path: '/about',
+          builder: (context, state) => const AboutPage(),
         ),
       ],
     ),
