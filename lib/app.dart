@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'pages/about_page.dart';
+import 'theme.dart';
 import 'pages/bit_conversion_page.dart';
 import 'pages/character_counter_page.dart';
 import 'pages/clock_page.dart';
@@ -14,11 +15,8 @@ class UtilityToolkitApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Utility Toolkit',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-        useMaterial3: true,
-      ),
+      title: 'WWU Utility Toolkit',
+      theme: wwuTheme,
       routerConfig: _router,
     );
   }
