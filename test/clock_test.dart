@@ -51,9 +51,9 @@ void main() {
       expect(model.countdownText, '');
     });
 
-    test('countdownText returns "Deadline reached" for past deadline', () {
+    test('countdownText counts up (contains "second") for past deadline', () {
       model.setDeadline(DateTime.now().subtract(const Duration(seconds: 1)));
-      expect(model.countdownText, 'Deadline reached');
+      expect(model.countdownText, contains('second'));
     });
 
     test('countdownText contains "day" for multi-day deadline', () {

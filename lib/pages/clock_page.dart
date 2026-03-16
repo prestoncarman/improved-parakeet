@@ -111,7 +111,7 @@ class ClockPage extends StatelessWidget {
   }
 }
 
-/// Card showing the deadline time and countdown (or "Deadline reached").
+/// Card showing the deadline and a live countdown (before) or count-up (after).
 class _CountdownCard extends StatelessWidget {
   final ClockModel model;
 
@@ -122,11 +122,12 @@ class _CountdownCard extends StatelessWidget {
     final deadline = model.deadline!;
     final h = deadline.hour.toString().padLeft(2, '0');
     final m = deadline.minute.toString().padLeft(2, '0');
+    final overdue = model.deadlineReached;
+    final cs = Theme.of(context).colorScheme;
 
     return Card(
-      color: model.deadlineReached
-          ? Theme.of(context).colorScheme.errorContainer
-          : Theme.of(context).colorScheme.primaryContainer,
+      // Green tint before deadline; orange tint after.
+      color: overdue ? cs.tertiaryContainer : cs.primaryContainer,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -136,29 +137,33 @@ class _CountdownCard extends StatelessWidget {
               'Deadline: $h:$m',
               style: Theme.of(context).textTheme.labelLarge,
             ),
+            const SizedBox(height: 6),
+            Text(
+              overdue ? 'Time over:' : 'Time remaining:',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: overdue
+                        ? cs.onTertiaryContainer
+                        : cs.onPrimaryContainer,
+                  ),
+            ),
             const SizedBox(height: 8),
-            if (model.deadlineReached)
-              Text(
-                'Deadline reached',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: Theme.of(context).colorScheme.error,
-                      fontWeight: FontWeight.bold,
-                    ),
-              )
-            else ...[
-              Text(
-                'Time remaining:',
-                style: Theme.of(context).textTheme.titleMedium,
+            // FittedBox scales the time string to fill the card width.
+            SizedBox(
+              width: double.infinity,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  model.countdownText,
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: overdue
+                            ? cs.onTertiaryContainer
+                            : cs.onPrimaryContainer,
+                      ),
+                ),
               ),
-              const SizedBox(height: 4),
-              Text(
-                model.countdownText,
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall
-                    ?.copyWith(fontWeight: FontWeight.bold),
-              ),
-            ],
+            ),
           ],
         ),
       ),
