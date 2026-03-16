@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'pages/about_page.dart';
-import 'theme.dart';
 import 'pages/bit_conversion_page.dart';
 import 'pages/character_counter_page.dart';
 import 'pages/clock_page.dart';
+import 'theme.dart';
 import 'widgets/app_scaffold.dart';
 
 /// Root application widget with routing configured.
