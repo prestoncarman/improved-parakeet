@@ -5,6 +5,7 @@ import 'pages/about_page.dart';
 import 'pages/bit_conversion_page.dart';
 import 'pages/character_counter_page.dart';
 import 'pages/clock_page.dart';
+import 'theme.dart';
 import 'widgets/app_scaffold.dart';
 
 /// Root application widget with routing configured.
@@ -15,10 +16,7 @@ class UtilityToolkitApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Utility Toolkit',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-        useMaterial3: true,
-      ),
+      theme: wwuTheme,
       routerConfig: _router,
     );
   }
