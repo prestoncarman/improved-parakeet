@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 const _repoUrl = 'https://github.com/prestoncarman/improved-parakeet';
-const _issuesUrl = 'https://github.com/prestoncarman/improved-parakeet/issues/new';
+const _issuesUrl =
+    'https://github.com/prestoncarman/improved-parakeet/issues/new';
 const _contributingUrl =
     'https://github.com/prestoncarman/improved-parakeet/blob/main/CONTRIBUTING.md';
 

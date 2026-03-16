@@ -99,7 +99,8 @@ class ClockPage extends StatelessWidget {
     if (picked == null) return;
 
     final now = DateTime.now();
-    var deadline = DateTime(now.year, now.month, now.day, picked.hour, picked.minute);
+    var deadline =
+        DateTime(now.year, now.month, now.day, picked.hour, picked.minute);
 
     // If the chosen time is already in the past today, target tomorrow
     if (deadline.isBefore(now)) {

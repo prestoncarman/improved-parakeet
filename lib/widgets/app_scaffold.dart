@@ -61,9 +61,7 @@ class AppScaffold extends StatelessWidget {
                 tooltip: 'About',
                 icon: Icon(
                   onAbout ? Icons.info : Icons.info_outline,
-                  color: onAbout
-                      ? Theme.of(context).colorScheme.primary
-                      : null,
+                  color: onAbout ? Theme.of(context).colorScheme.primary : null,
                 ),
                 onPressed: () => context.go('/about'),
               ),
