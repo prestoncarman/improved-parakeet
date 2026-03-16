@@ -15,7 +15,7 @@ class UtilityToolkitApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'WWU Utility Toolkit',
+      title: 'Utility Toolkit',
       theme: wwuTheme,
       routerConfig: _router,
     );
