@@ -32,19 +32,23 @@ class ClockModel extends ChangeNotifier {
   bool get deadlineReached =>
       _deadline != null && DateTime.now().isAfter(_deadline!);
 
-  /// Human-readable countdown string, e.g. "3 days 4 hours 10 minutes 21 seconds".
+  /// Human-readable time string for the countdown/count-up display.
+  ///
+  /// Before the deadline: counts down, e.g. "3 days 4 hours 10 minutes 21 seconds".
+  /// After the deadline: counts up, e.g. "2 minutes 30 seconds".
   /// Returns empty string if no deadline is set.
-  /// Returns "Deadline reached" if the deadline has passed.
   String get countdownText {
     if (_deadline == null) return '';
     final now = DateTime.now();
-    if (now.isAfter(_deadline!)) return 'Deadline reached';
 
-    final remaining = _deadline!.difference(now);
-    final days = remaining.inDays;
-    final hours = remaining.inHours % 24;
-    final minutes = remaining.inMinutes % 60;
-    final seconds = remaining.inSeconds % 60;
+    final span = now.isAfter(_deadline!)
+        ? now.difference(_deadline!)
+        : _deadline!.difference(now);
+
+    final days = span.inDays;
+    final hours = span.inHours % 24;
+    final minutes = span.inMinutes % 60;
+    final seconds = span.inSeconds % 60;
 
     final parts = <String>[];
     if (days > 0) parts.add('$days day${days != 1 ? 's' : ''}');
