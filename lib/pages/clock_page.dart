@@ -141,7 +141,9 @@ class _CountdownCard extends StatelessWidget {
             Text(
               overdue ? 'Time over:' : 'Time remaining:',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: overdue ? cs.onTertiaryContainer : cs.onPrimaryContainer,
+                    color: overdue
+                        ? cs.onTertiaryContainer
+                        : cs.onPrimaryContainer,
                   ),
             ),
             const SizedBox(height: 8),
